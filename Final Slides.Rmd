@@ -1,0 +1,146 @@
+---
+title: "Afrobarometer Nigeria Survey 2022"
+author: "Emmanuel Maduneme<br><span style = 'font-size: 50%;'>University of Oregon<br>Fall 2022</span>"
+date: "`r Sys.Date()`"
+output: 
+    xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      eval = TRUE,
+                      message = FALSE)
+options(htmltools.dir.version = FALSE)
+
+library(xaringan)
+library(pacman)
+library(xaringanthemer)
+library(tidyverse)
+library(knitr)
+library(here)
+library(kableExtra)
+library(janitor)
+library(remotes)
+library(readr)
+NGA1  <- sf::st_read(here("data", "map_nigeria", "gadm41_NGA_1.shp"))
+p_load(ggiraph, magick)
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+style_duo_accent(
+  primary_color = "#1F4E79",
+  secondary_color = "#0072B2",
+  header_font_google = google_font("Atkinson Hyperlegible", "600"),
+  text_font_google   = google_font("Atkinson Hyperlegible", "300", "300i"),
+  code_font_google   = google_font("IBM Plex Mono"),
+  colors = c(
+    darkblue = "#0072B2",
+    lightblue = "#56B4E9",
+    darkorange = "#D55E00",
+    lightorange = "#E69f00",
+    yellow = "#F0E442",
+    green = "#009E73",
+    pink = "#CC79A7",
+    gray = "999999",
+    white = "#FFFFFF",
+    black = "#000000"
+  )
+)
+
+
+
+```
+
+# Synopsis
+
+
+-   Nigeria just concluded her general elections between February and March 15 2023
+
+-   The current Government just concluded it's second and final term
+
+## Goal
+-   I hope to explore how Nigerians assessed a variety of issues about the outgoing government and the media     
+---
+
+## Journey
+
+-   I never realized there's just so muc data out there about several things
+
+-   I am glad to have taken this class as it really changed the way I think about visualizing complicated data
+
+-   I realised there are many visualization software that I culd use to supplement and improve the plts from R (Tableau, Datawrapper e.t.c)
+
+---
+
+##  First Plot 
+
+-  At first, I was having some issues with getting a map for Nigeria to plot how trust varied by different states.  
+- After wrangling the data, I used Tableau to try out a map. 
+```{r, echo=FALSE, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Overall Trust in Institutions By State.png"))
+
+```
+---
+
+-   After learning after the plotting spatial data for different countries from week 8 class, I was able to create a similar plot for trust in the President by state. 
+
+```{r, echo=FALSE}
+knitr::include_graphics(here("final draft graphics", "trust_president.png"))
+
+```
+---
+## Challenges 
+-   I am still having challenges labeling the states in a way that is not distracting.
+-   I got peer feedback about the color palette and the legend
+-   I am still looking into implementing that in the final dashboard. 
+
+```{r, out.width = '70%'}
+
+knitr::include_graphics(here("final draft graphics", "map_trust.png"))
+```
+
+---
+## Issue Perceptions
+
+-     After wrangling the data, I created a simple bar plot but I realized `plot_ly` is a great way to make interactive graphs than `ggplotly`. 
+-   Perhaps, I am not great at using it. 
+-   The one on the left is the first one I made with `ggplot`. The one on the right is the plot_ly
+-   I was also able to implement some of the class lessons on scale, colorblind friendliness and minimal use of ink to only relevant information
+
+```{r, warning=FALSE, echo=FALSE, figures-side, fig.show="hold", out.width="50%"}
+knitr::include_graphics(here( "final draft graphics", "Old issue plot.png"))
+
+knitr::include_graphics(here( "final draft graphics", "Plotly made issues.png"))
+
+
+
+```
+
+---
+## Tentative Dashbaord 
+
+This is what my dashbaord is currently looking at but changes are still being implemented. 
+gif created using `magick` package. 
+
+```{r, echo=FALSE, warning=FALSE}
+imgs <- list.files(here("dashboard_image"), full.names = TRUE)
+img_list <- lapply(imgs, image_read)
+
+## join the images together
+img_joined <- image_join(img_list)
+
+## animate at 2 frames per second
+img_animated <- image_animate(img_joined, fps = 1)
+
+## view animated image
+img_animated
+```
+

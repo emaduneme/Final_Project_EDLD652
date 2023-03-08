@@ -475,18 +475,44 @@ media_by_state <- full_set2 %>%
 
 ```
 
+
+Radio & TV {data-navmenu="Media Use by State"}
+=====================================  
+
 Row {data-height=400}
 -----------------------------------------
 
-### General Media Use 
+### Radio Use By State
 
-```{r warning=FALSE}
-media_by_state
-
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Radio By State.png"))
 ```
 
-### Media Use By State
+### TV Use By State
 
-```{r warning=FALSE}
-knitr::include_graphics(here( "final draft graphics", "Average Media Use by State.png"))
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "TV By State.png"))
+```
+
+
+Newspaper & Social Media {data-navmenu="Media Use by State"}
+=====================================  
+
+Row {data-height=200}
+-----------------------------------------
+
+### Newspaper Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Newspaper Use.png"))
+```
+
+
+### Social Media Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Soc_Media by State.png"))
+```
+
+
 ```
